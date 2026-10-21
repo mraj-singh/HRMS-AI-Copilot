@@ -1,49 +1,92 @@
-<img width="2866" height="1274" alt="image" src="https://github.com/user-attachments/assets/4b4defd5-663f-45d1-b9e3-f9adbcfabbae" />
+`<img width="2866" height="1274" alt="image" src="https://github.com/user-attachments/assets/4b4defd5-663f-45d1-b9e3-f9adbcfabbae" />`{=html}
 
 # CB Nest
 
-**CB Nest** is a full-stack HR Management System built for hands-on learning. It covers real-world business workflows — employee lifecycle, attendance, leave approvals, payroll, ticketing, and more — using a modern stack (FastAPI + Next.js + Docker). Use it to understand how production-grade HRMS platforms work, and extend it with your own AI features.
+**CB Nest** is a full-stack HR Management System built for hands-on
+learning. It covers real-world business workflows --- employee
+lifecycle, attendance, leave approvals, payroll, ticketing, and more ---
+using a modern stack (FastAPI + Next.js + Docker). Use it to understand
+how production-grade HRMS platforms work, and extend it with your own AI
+features.
 
-> 📖 **New here?** Start with the [Learner Guide](docs/Learner_Guide.md) for a complete walkthrough of the project architecture, database, and how to explore the code.
+> 📖 **New here?** Start with the [Learner Guide](docs/Learner_Guide.md)
+> for a complete walkthrough of the project architecture, database, and
+> how to explore the code.
 
 ## Overview
 
-This project provides a working HRMS platform with authentication, employee operations, attendance, leave management, communication features, finance data views, and ticketing workflows.
+This project provides a working HRMS platform with authentication,
+employee operations, attendance, leave management, communication
+features, finance data views, and ticketing workflows.
 
-It is designed as a practical base for AI feature integration (RAG, assistants, agent workflows) without rebuilding core HR modules from scratch.
+It is designed as a practical base for AI feature integration (RAG,
+assistants, agent workflows) without rebuilding core HR modules from
+scratch.
 
+## AI Copilot Screenshots
+
+### HR Experience
+
+![HR AI Copilot](HR_AI_Copilot.PNG)
+
+### Manager Experience
+
+![Manager AI Copilot](Manager_AI_Copilot.PNG)
+
+### Employee Experience
+
+![Employee AI Copilot](Employee_AI_Copilot.PNG)
 
 ## Tech Stack
 
-- Frontend: Next.js 15, React 19, Tailwind CSS
-- Backend: FastAPI, SQLAlchemy (async), Pydantic v2
-- Database: SQLite
-- Migrations: Alembic
-- Orchestration: Docker Compose
+-   Frontend: Next.js 15, React 19, Tailwind CSS
+-   Backend: FastAPI, SQLAlchemy (async), Pydantic v2
+-   Database: SQLite
+-   Migrations: Alembic
+-   Orchestration: Docker Compose
 
 ## Features
 
-- JWT auth with role-aware access (ADMIN, MANAGER, EMPLOYEE)
-- Employee directory with search, filters, and pagination
-- Attendance clock in/clock out with status and mode tracking
-- Leave balances and leave request workflow
-- Announcements and polls
-- Team calendar (leaves, WFH, holidays, birthdays)
-- My Profile edits, profile photo upload, job history, documents
-- Finance views (salary, statutory, payroll history)
-- Tickets with assignment, status updates, onboarding tasks
-- HR policy upload/download library
-- Admin/Manager employee document upload flow (APPOINTMENT, TAX, PAYSLIP, OTHER)
-- My Documents with search, view, and download; delete is allowed only for `OTHER` document type
-- Password-protected PDF payslips (DOB in `DD-MM-YY`) for generated and uploaded payslips
-- Notification bell for announcements, polls, ticket assignment, ticket status, leave decision, and employee-document uploads by others (not self-uploads)
-- AI-powered HR Copilot with policy RAG, read-only natural-language SQL, and role-checked HR actions
-- AI security controls: SQL validation, sensitive-field restrictions, role-based access, and AI audit logging
-- AI evaluation documentation covering policy grounding, SQL safety, action authorization, and known limitations
+-   JWT auth with role-aware access (ADMIN, MANAGER, EMPLOYEE)
+-   Employee directory with search, filters, and pagination
+-   Attendance clock in/clock out with status and mode tracking
+-   Leave balances and leave request workflow
+-   Announcements and polls
+-   Team calendar (leaves, WFH, holidays, birthdays)
+-   My Profile edits, profile photo upload, job history, documents
+-   Finance views (salary, statutory, payroll history)
+-   Tickets with assignment, status updates, onboarding tasks
+-   HR policy upload/download library
+-   Admin/Manager employee document upload flow (APPOINTMENT, TAX,
+    PAYSLIP, OTHER)
+-   My Documents with search, view, and download; delete is allowed only
+    for `OTHER` document type
+-   Password-protected PDF payslips (DOB in `DD-MM-YY`) for generated
+    and uploaded payslips
+-   Notification bell for announcements, polls, ticket assignment,
+    ticket status, leave decision, and employee-document uploads by
+    others (not self-uploads)
+-   **AI-Powered HR Copilot** with three capabilities:
+    -   **Policy RAG Assistant:** answers HR policy questions using
+        retrieved policy documents and source-grounded responses.
+    -   **Natural-Language HR Data Assistant:** translates supported
+        questions into read-only SQL queries, with SQL validation and
+        restrictions on sensitive fields.
+    -   **HR Task Automation Assistant:** supports approved HR workflows
+        through existing backend APIs, with role and permission checks;
+        the AI does not directly modify the database.
+-   **Role-aware access:** HR, managers, and employees receive access
+    according to their permissions and data scope.
+-   **AI security and governance:** SQL guardrails, sensitive-field
+    restrictions, prompt-injection defenses, authorization checks, and
+    AI audit logging.
+-   **AI evaluation and documentation:** test coverage and documented
+    results for policy grounding, SQL safety, action authorization, and
+    known limitations.
 
 ## Repository Structure
 
-```text
+``` text
 .
 |-- backend/
 |   |-- alembic/
@@ -99,31 +142,31 @@ It is designed as a practical base for AI feature integration (RAG, assistants, 
 
 ## Prerequisites
 
-- **Docker Desktop** (or Docker Engine + Compose v2)
-  - On Windows: install [Docker Desktop](https://www.docker.com/products/docker-desktop/) and ensure the **WSL 2 backend** is enabled
-- **Git**
-
+-   **Docker Desktop** (or Docker Engine + Compose v2)
+    -   On Windows: install [Docker
+        Desktop](https://www.docker.com/products/docker-desktop/) and
+        ensure the **WSL 2 backend** is enabled
+-   **Git**
 
 ## Quick Start
 
 First-time setup:
 
-```bash
+``` bash
 git clone <repo-url>
 cd HRMS
 cp backend/.env.example backend/.env
 ```
 
-
 For PowerShell on Windows:
 
-```powershell
+``` powershell
 Copy-Item backend/.env.example backend/.env
 ```
 
 Then run from repository root:
 
-```bash
+``` bash
 docker-compose up -d --build
 docker-compose exec api alembic -c alembic.ini upgrade head
 docker-compose exec api python scripts/seed.py
@@ -131,21 +174,21 @@ docker-compose exec api python scripts/seed.py
 
 Open:
 
-- App: `http://localhost:3000`
-- API docs: `http://localhost:8000/docs`
-- API redoc: `http://localhost:8000/redoc`
+-   App: `http://localhost:3000`
+-   API docs: `http://localhost:8000/docs`
+-   API redoc: `http://localhost:8000/redoc`
 
 Verify everything is working:
 
-```bash
+``` bash
 docker-compose ps
 ```
 
 ## Default Credentials
 
-- Admin: `admin@mock-hrms.dev` / `password123`
-- Manager: `manager@mock-hrms.dev` / `password123`
-- Employee: `employee@mock-hrms.dev` / `password123`
+-   Admin: `admin@mock-hrms.dev` / `password123`
+-   Manager: `manager@mock-hrms.dev` / `password123`
+-   Employee: `employee@mock-hrms.dev` / `password123`
 
 ## Configuration
 
@@ -153,51 +196,52 @@ Backend environment file: `backend/.env`
 
 Use `backend/.env.example` as reference. Current key settings:
 
-- `DATABASE_URL=sqlite+aiosqlite:///./storage/hrms.db`
-- `APP_TIMEZONE=Asia/Kolkata`
-- JWT settings (`JWT_SECRET_KEY`, expiry values)
+-   `DATABASE_URL=sqlite+aiosqlite:///./storage/hrms.db`
+-   `APP_TIMEZONE=Asia/Kolkata`
+-   JWT settings (`JWT_SECRET_KEY`, expiry values)
 
 ## Common Commands
 
 Start services:
 
-```bash
+``` bash
 docker-compose up -d
 ```
 
 Restart API + Web after code changes:
 
-```bash
+``` bash
 docker compose restart api web
 ```
 
 Stop services:
 
-```bash
+``` bash
 docker-compose down
 ```
 
 Run migrations:
 
-```bash
+``` bash
 docker-compose exec api alembic -c alembic.ini upgrade head
 ```
 
 Reseed data:
 
-```bash
+``` bash
 docker-compose exec api python scripts/seed.py
 ```
 
-Optional one-time migration (legacy payslip files to DOB-password-protected PDFs):
+Optional one-time migration (legacy payslip files to
+DOB-password-protected PDFs):
 
-```bash
+``` bash
 docker compose exec api python scripts/migrate_payslips_to_encrypted_pdf.py
 ```
 
 Check containers:
 
-```bash
+``` bash
 docker-compose ps
 ```
 
@@ -205,7 +249,7 @@ docker-compose ps
 
 On macOS/Linux:
 
-```bash
+``` bash
 docker-compose down
 rm -f backend/storage/hrms.db
 docker-compose up -d --build
@@ -215,7 +259,7 @@ docker-compose exec api python scripts/seed.py
 
 On PowerShell:
 
-```powershell
+``` powershell
 docker-compose down
 Remove-Item backend\storage\hrms.db -Force -ErrorAction SilentlyContinue
 docker-compose up -d --build
@@ -225,36 +269,43 @@ docker-compose exec api python scripts/seed.py
 
 ## API Notes
 
-- API base path: `/api/v1`
-- Health checks:
-  - `/health`
-  - `/api/v1/health`
-- Standard response envelope:
-  - Success: `{ "success": true, "data": ..., "error": null }`
-  - Error: `{ "success": false, "data": null, "error": { "code": "...", "message": "..." } }`
-- Document uploads:
-  - Employee self-upload: `POST /api/v1/employees/me/documents`
-  - Employee self-delete: `DELETE /api/v1/employees/me/documents/{document_id}` (`OTHER` type only)
-  - Admin/Manager upload for any employee: `POST /api/v1/employees/{employee_id}/documents`
-  - Admin/Manager payslip upload: `POST /api/v1/employees/{employee_id}/documents/payslip`
+-   API base path: `/api/v1`
+-   Health checks:
+    -   `/health`
+    -   `/api/v1/health`
+-   Standard response envelope:
+    -   Success: `{ "success": true, "data": ..., "error": null }`
+    -   Error:
+        `{ "success": false, "data": null, "error": { "code": "...", "message": "..." } }`
+-   Document uploads:
+    -   Employee self-upload: `POST /api/v1/employees/me/documents`
+    -   Employee self-delete:
+        `DELETE /api/v1/employees/me/documents/{document_id}` (`OTHER`
+        type only)
+    -   Admin/Manager upload for any employee:
+        `POST /api/v1/employees/{employee_id}/documents`
+    -   Admin/Manager payslip upload:
+        `POST /api/v1/employees/{employee_id}/documents/payslip`
 
 ## Troubleshooting
 
-- If frontend shows stale build/runtime issues:
-  - `docker-compose restart web`
-- If API changes are not reflected:
-  - `docker-compose restart api`
-- If migration or seed fails:
-  - reset DB using the commands above, then migrate and seed again
+-   If frontend shows stale build/runtime issues:
+    -   `docker-compose restart web`
+-   If API changes are not reflected:
+    -   `docker-compose restart api`
+-   If migration or seed fails:
+    -   reset DB using the commands above, then migrate and seed again
 
 ## Documentation
 
-- Learner guide: [`Learner_Guide.md`](docs/Learner_Guide.md) — full project walkthrough, architecture, database schema, learning path
-- Product requirements: [`PRD.md`](docs/PRD.md)
-- Database schema reference: [`db_tables_samples.md`](docs/db_tables_samples.md)
-- AI chat endpoint contracts: `docs/api/`
-- [AI Architecture](docs/ai_architecture.md)
-- [AI Permissions Matrix](docs/ai_permissions_matrix.md)
-- [AI Evaluation Results](docs/ai_eval_results.md)
+-   Learner guide: [`Learner_Guide.md`](docs/Learner_Guide.md) --- full
+    project walkthrough, architecture, database schema, learning path
+-   Product requirements: [`PRD.md`](docs/PRD.md)
+-   Database schema reference:
+    [`db_tables_samples.md`](docs/db_tables_samples.md)
+-   AI chat endpoint contracts: `docs/api/`
+-   [AI Architecture](docs/ai_architecture.md)
+-   [AI Permissions Matrix](docs/ai_permissions_matrix.md)
+-   [AI Evaluation Results](docs/ai_eval_results.md)
 
 Copyright (c). All rights reserved.
